@@ -1,14 +1,19 @@
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ArticleProvider } from "./Components/Context/Context";
 
 import Routing from "./Components/Routing/Routing";
+import { useState } from "react";
 
 function App() {
+  const [articleContext,setArticleContext] = useState({});
   return (
     <>
-      <Router>
-        <Routing />
-      </Router>
+      <ArticleProvider value={{articleContext,setArticleContext}}>
+        <Router>
+          <Routing />
+        </Router>
+      </ArticleProvider>
     </>
   );
 }

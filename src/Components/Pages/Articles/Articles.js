@@ -6,9 +6,13 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import ArticleCard from "../../Features/Card/Card";
+import { Link } from "react-router-dom";
+import { useArticleContext } from "../../Context/Context";
 import "./Articles.css";
+import { withRouter } from "react-router-dom";
 
-function Articles() {
+function Articles(props) {
+  const { setArticleContext } = useArticleContext();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [articles, setArticles] = useState([]);
@@ -52,6 +56,7 @@ function Articles() {
   }, [category]);
 
   console.log({ articles });
+
   return (
     <>
       <div className="radio-buttons">
@@ -113,8 +118,8 @@ function Articles() {
             />
           </RadioGroup>
         </FormControl>
-        </div>
-        <div className="search-input">
+      </div>
+      <div className="search-input">
         <input
           onChange={(e) => {
             setQuery(e.target.value);
@@ -126,10 +131,19 @@ function Articles() {
         {articles.map((article) => {
           return (
             <ArticleCard
-              urlToImage={article.urlToImage ? article.urlToImage : 'https://img.bfmtv.com/c/630/420/871/7b9f41477da5f240b24bd67216dd7.jpg'}
+              urlToImage={
+                article.urlToImage
+                  ? article.urlToImage
+                  : "https://img.bfmtv.com/c/630/420/871/7b9f41477da5f240b24bd67216dd7.jpg"
+              }
               title={article.title}
               description={article.description}
               publishedAt={article.publishedAt}
+              onClick={(e) => {
+                console.log({article});
+                setArticleContext(article);
+                props.history.push("/article");
+              }}
             />
           );
         })}
@@ -138,4 +152,4 @@ function Articles() {
   );
 }
 
-export default Articles;
+export default withRouter(Articles);

@@ -8,7 +8,7 @@ function Routing() {
     <div>
       <Switch>
         <Route exact path="/" component={Articles} />
-        <Route path="/Article" component={Article} />
+        <Route path="/article" component={Article} />
       </Switch>
     </div>
   );
