@@ -1,12 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-import Articles from './Components/Pages/Articles/Articles';
+import "./App.css";
+import { BrowserRouter as Router } from "react-router-dom";
+
+import Routing from "./Components/Routing/Routing";
 
 function App() {
   return (
-    <div className="App">
-      <Articles/>
-    </div>
+    <>
+      <Router>
+        <Routing />
+      </Router>
+    </>
   );
 }
 

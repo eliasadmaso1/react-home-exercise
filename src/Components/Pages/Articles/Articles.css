@@ -1,0 +1,19 @@
+.articles-div {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.radio-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
