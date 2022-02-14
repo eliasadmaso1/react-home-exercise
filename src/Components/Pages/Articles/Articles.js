@@ -10,6 +10,9 @@ import { Link } from "react-router-dom";
 import { useArticleContext } from "../../Context/Context";
 import "./Articles.css";
 import { withRouter } from "react-router-dom";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 
 function Articles(props) {
   const { setArticleContext } = useArticleContext();
@@ -120,15 +123,20 @@ function Articles(props) {
         </FormControl>
       </div>
       <div className="search-input">
-        <input
+      <TextField
+          label="Search"
+          id="outlined-size-small"
+          size="small"
           onChange={(e) => {
             setQuery(e.target.value);
           }}
         />
-        <button onClick={search}>search</button>
+       <Button variant="contained" onClick={search}>Search</Button>
+
       </div>
       <div className="articles-div">
         {articles.map((article) => {
+          const des = article.description?.substr(0,80) || '';
           return (
             <ArticleCard
               urlToImage={
@@ -137,7 +145,7 @@ function Articles(props) {
                   : "https://img.bfmtv.com/c/630/420/871/7b9f41477da5f240b24bd67216dd7.jpg"
               }
               title={article.title}
-              description={article.description}
+              description={des}
               publishedAt={article.publishedAt}
               onClick={(e) => {
                 console.log({article});
