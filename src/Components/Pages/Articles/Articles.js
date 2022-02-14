@@ -6,7 +6,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import ArticleCard from "../../Features/Card/Card";
-import { Link } from "react-router-dom";
 import { useArticleContext } from "../../Context/Context";
 import "./Articles.css";
 import { withRouter } from "react-router-dom";
@@ -37,7 +36,6 @@ function Articles(props) {
     )
       .then((data) => data.json())
       .then((res) => {
-        console.log({ res });
         setArticles(res.articles);
       });
   };
@@ -49,7 +47,6 @@ function Articles(props) {
     )
       .then((data) => data.json())
       .then((res) => {
-        console.log({ res });
         setArticles(res.articles);
       });
   };
@@ -58,7 +55,6 @@ function Articles(props) {
     search();
   }, [category]);
 
-  console.log({ articles });
 
   return (
     <>
@@ -135,7 +131,7 @@ function Articles(props) {
 
       </div>
       <div className="articles-div">
-        {articles.map((article) => {
+        {articles?.map((article) => {
           const des = article.description?.substr(0,80) || '';
           return (
             <ArticleCard
@@ -148,7 +144,6 @@ function Articles(props) {
               description={des}
               publishedAt={article.publishedAt}
               onClick={(e) => {
-                console.log({article});
                 setArticleContext(article);
                 props.history.push("/article");
               }}
